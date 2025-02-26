@@ -19,7 +19,7 @@ pipeline {
             steps {
                 script {
                     echo "Executop, du script script..."
-                    sh 'python3 addition.py'
+                    sh 'python3 addition.py 5 10'
                 }
             }
         }
