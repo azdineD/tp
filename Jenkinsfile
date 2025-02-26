@@ -2,13 +2,13 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+        stage('de_git') {
             steps {
                 git branch: 'main', url: 'https://github.com/azdineD/tp.git'
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Installation') {
             steps {
                 script {
                     echo "Installing Python and dependencies..."
@@ -16,10 +16,10 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
+        stage('demarage du Tests') {
             steps {
                 script {
-                    echo "Running unit tests..."
+                    echo "demarage des  tests..."
                     sh 'python3 -m unittest test_addition.py'
                 }
             }
