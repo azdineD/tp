@@ -15,7 +15,14 @@ pipeline {
 		sh 'apt-get update && apt-get install -y python3 python3-pip'                }
             }
         }
-
+        stage('pyhton Script') {
+            steps {
+                script {
+                    echo "Executop, du script script..."
+                    sh 'python3 addition.py'
+                }
+            }
+        }
         stage('demarage du Tests') {
             steps {
                 script {
