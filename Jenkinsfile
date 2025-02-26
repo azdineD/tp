@@ -2,32 +2,35 @@ pipeline {
     agent any
 
     stages {
-        stage('de_git') {
+        stage('de git') {
             steps {
                 git branch: 'main', url: 'https://github.com/azdineD/tp.git'
             }
         }
 
-        stage('Installation') {
+        stage('Tests') {
             steps {
                 script {
-                    echo "Installing Python and dependencies..."
-		sh 'apt-get update && apt-get install -y python3 python3-pip'                }
-            }
-        }
-        stage('pyhton Script') {
-            steps {
-                script {
-                    echo "Executop, du script script..."
-                    sh 'python3 addition.py 5 10'
+                    echo "lancement du tests..."
+                    sh 'python3 -m unittest test_addition.py'
                 }
             }
         }
-        stage('demarage du Tests') {
+
+        stage('creation image Docker') {
             steps {
                 script {
-                    echo "demarage des  tests..."
-                    sh 'python3 -m unittest test_addition.py'
+                    echo "creation  image Docker .."
+                    sh 'docker build -t azdineD/addition:latest .'
+                }
+            }
+        }
+
+        stage(' Docker Container') {
+            steps {
+                script {
+                    echo "demarragedu Docker container..."
+                    sh 'docker run --rm azdineD/addition 5 10'
                 }
             }
         }
