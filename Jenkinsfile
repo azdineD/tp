@@ -12,8 +12,7 @@ pipeline {
             steps {
                 script {
                     echo "Installing Python and dependencies..."
-                    sh 'sudo apt install update && sudo apt install -y python3 python3-pip'
-                }
+		sh 'apt-get update && apt-get install -y python3 python3-pip'                }
             }
         }
 
